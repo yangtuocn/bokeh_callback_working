@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweet Adventure</title>
+  <link rel="stylesheet" type="text/css" 
+        href="{{ url_for('static', filename='style.css') }}">
+
+  <link rel="stylesheet" type="text/css" 
+        href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.css">
+  <line rel="stylesheet" type="text/css"
+        href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.css">
+
+  <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
+  <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.js"></script>
+
+  {{ plot_script|safe }}
+
+</head>
+<body>
+
+  <div class="page">
+
+    <h1>Tweet Adventure</h1>
+    {% block body %}{% endblock %}
+
+    <form action="{{ url_for('add_query') }}" method="post" class="add-entry">
+      <dl>
+        <dt>try everything:</dt>
+        <dd><input type="text" size="30" name="tweet_query"></dd>
+        <dd><input type="submit" value="Query"></dd>
+      </dl>
+    </form>
+
+    {% for message in get_flashed_messages() %}
+      <dd class="flash">{{ message }}</dd>
+    {% endfor %}
+
+    {{ plot_div|safe }}
+
+  </div>
+
+</body>
+</html>

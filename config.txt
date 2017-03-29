@@ -1,0 +1,6 @@
+{
+    "api_key": "EObeRwIkOarDA7FJQaXq985zQ",
+    "api_secret": "ay84Svu1jU4OTwbUOTmdWMZFjPuc2bEHo7OfUnBFUHNjbyVvyw",
+    "access_token": "828449533705097216-S09xmDuym0LKUc7gIRghvnbi5kcP6Wm",
+    "access_token_secret": "qwTrrEhi1EcpBqrNLkm7PokyDPsZmRz45IHoc5GXkM5xL"
+}
