@@ -15,7 +15,7 @@ import requests
 import pandas
 from nltk.tokenize import TweetTokenizer
 import string
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 from collections import Counter
 
 DEBUG = True
@@ -74,7 +74,12 @@ def add_query():
                             'retweet_count',
                             'text']
 
-        exclude_words = stopwords.words('English') + \
+        English_stopwords = []
+        with open('English_stopwords.txt','r') as English_stop_file:
+            for line in English_stop_file:
+                English_stopwords.append(line.strip())
+
+        exclude_words = English_stopwords + \
                         list(string.punctuation) + \
                         ['rt', 'via', 'https']
 
