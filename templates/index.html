@@ -13,8 +13,6 @@
   <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
   <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.js"></script>
 
-  {{ plot_script|safe }}
-
 </head>
 <body>
 
@@ -27,7 +25,7 @@
       <dl>
         <dt>try everything:</dt>
         <dd><input type="text" size="30" name="tweet_query"></dd>
-        <dd><input type="submit" value="Query"></dd>
+        <dd><input type="submit" value="Search"></dd>
       </dl>
     </form>
 
@@ -35,7 +33,7 @@
       <dd class="flash">{{ message }}</dd>
     {% endfor %}
 
-    {{ plot_div|safe }}
+    {{ tweet_blockquote | safe }}
 
   </div>
 
