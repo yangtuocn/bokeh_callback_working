@@ -74,28 +74,30 @@ plot_source = ColumnDataSource(data=dict(x=tweet_tags['x'], y=tweet_tags['y'], t
 hover = HoverTool(tooltips=[('index','$index'),('tweet_id','@tid')])
 p = figure(plot_width=500, tools=[PanTool(), WheelZoomTool(), hover, ResetTool(), TapTool(), LassoSelectTool()])
 p.circle('x','y',source=plot_source)
-# scr, di = components(p)
-
-plot_source2 = ColumnDataSource(data=dict(x=[], y=[]))
-p2 = figure(plot_width=500, x_range=(0,1),y_range=(0,1))
-p2.circle('x','y',source=plot_source2)
-# scr2, di2 = components(p)
-
-p3 = layouts.column(p, p2)
 scr, di = components(p)
 
-plot_source.callback = CustomJS(args=dict(s2=plot_source2), code="""
-    var inds = cb_obj.selected['1d'].indices;
-    var d1 = cb_obj.data;
-    var d2 = s2.data;
-    d2['x'] = []
-    d2['y'] = []
-    for (i=0; i<inds.length; i++) {
-        d2['x'].push(d1['x'][inds[i]])
-        d2['y'].push(d1['y'][inds[j]])
-    }
-    s2.trigger('change');
-""")
+# scr, di = components(p)
+
+#plot_source2 = ColumnDataSource(data=dict(x=[], y=[]))
+#p2 = figure(plot_width=500, x_range=(0,1),y_range=(0,1))
+#p2.circle('x','y',source=plot_source2)
+# scr2, di2 = components(p)
+
+#p3 = layouts.column(p, p2)
+
+
+#plot_source.callback = CustomJS(args=dict(s2=plot_source2), code="""
+#    var inds = cb_obj.selected['1d'].indices;
+#    var d1 = cb_obj.data;
+#    var d2 = s2.data;
+#    d2['x'] = []
+#    d2['y'] = []
+#    for (i=0; i<inds.length; i++) {
+#        d2['x'].push(d1['x'][inds[i]])
+#        d2['y'].push(d1['y'][inds[j]])
+#    }
+#    s2.trigger('change');
+#""")
                      
 # plot_source.on_change('selected',flash_selected)
 
@@ -121,8 +123,8 @@ def get_tweet_blockquote(tweet_index):
 ################################################################
 
 
-def flash_selected(attr, old, new):
-    flash('got a point')
+#def flash_selected(attr, old, new):
+#    flash('got a point')
 
 
 @app.route('/')
