@@ -10,7 +10,14 @@ from bokeh.models import ColumnDataSource, Slider
 from bokeh.plotting import figure
 from bokeh.server.server import Server
 
+import os
+
+DEBUG = True
+
 flask_app = Flask(__name__)
+
+port = int(os.environ.get("PORT", 5000))
+server_url = '0.0.0.0:' + str(port)
 
 def modify_doc(doc):
     x = np.linspace(0, 10, 1000)
@@ -34,7 +41,7 @@ bokeh_app = Application(FunctionHandler(modify_doc))
 
 io_loop = IOLoop.current()
 
-server = Server({'/bkapp': bokeh_app}, io_loop=io_loop, allow_websocket_origin=["localhost:8080"])
+server = Server({'/bkapp': bokeh_app}, io_loop=io_loop, allow_websocket_origin=['127.0.0.1:'+str(port)])
 server.start()
 
 @flask_app.route('/', methods=['GET'])
@@ -46,17 +53,13 @@ if __name__ == '__main__':
     from tornado.httpserver import HTTPServer
     from tornado.wsgi import WSGIContainer
     from bokeh.util.browser import view
-    import os
 
     # print('Opening Flask app with embedded Bokeh application on http://localhost:8080/')
 
     # This uses Tornado to server the WSGI app that flask provides. Presumably the IOLoop
     # could also be started in a thread, and Flask could server its own app directly
     http_server = HTTPServer(WSGIContainer(flask_app))
-
-    port = int(os.environ.get("PORT", 5000))
     http_server.listen(port)
-    server_url = '0.0.0.0:' + str(port)
 
-    io_loop.add_callback(view, server_url)
+    #io_loop.add_callback(view, server_url)
     io_loop.start()
