@@ -1,1 +1,1 @@
-web: python bokeh_flask.py
+web: python app.py

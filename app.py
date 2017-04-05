@@ -82,7 +82,7 @@ p2.circle('x','y',source=plot_source2)
 # scr2, di2 = components(p)
 
 p3 = layouts.column(p, p2)
-scr, di = components(p3)
+scr, di = components(p)
 
 plot_source.callback = CustomJS(args=dict(s2=plot_source2), code="""
     var inds = cb_obj.selected['1d'].indices;
