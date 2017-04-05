@@ -7,16 +7,18 @@
 
   <link rel="stylesheet" type="text/css" 
         href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.css">
-  <line rel="stylesheet" type="text/css"
+  <link rel="stylesheet" type="text/css"
         href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.css">
 
   <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
   <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.js"></script>
 
+  {{ plot_script | safe }}
+
 </head>
 <body>
 
-  <div class="page">
+  <div class="page" style="width:800px;">
 
     <h1>Tweet Adventure</h1>
     {% block body %}{% endblock %}
@@ -33,7 +35,13 @@
       <dd class="flash">{{ message }}</dd>
     {% endfor %}
 
-    {{ tweet_blockquote | safe }}
+    <div style="width:300px; float:left;">
+      {{ plot_div | safe }}
+    </div>
+
+    <div style="width:300px; float:right;">
+      {{ tweet_blockquote | safe }}
+    </div>
 
   </div>
 
