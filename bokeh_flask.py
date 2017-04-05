@@ -41,12 +41,13 @@ bokeh_app = Application(FunctionHandler(modify_doc))
 
 io_loop = IOLoop.current()
 
-server = Server({'/bkapp': bokeh_app}, io_loop=io_loop, allow_websocket_origin=['127.0.0.1:'+str(port)])
+server = Server({'/bkapp': bokeh_app}, io_loop=io_loop,
+                allow_websocket_origin=[server_url])
 server.start()
 
 @flask_app.route('/', methods=['GET'])
 def bkapp_page():
-    script = autoload_server(model=None, url='http://localhost:5006/bkapp')
+    script = autoload_server(model=None, url='http://0.0.0.0:5006/bkapp') #localhost
     return render_template("embed.html", script=script)
 
 if __name__ == '__main__':
