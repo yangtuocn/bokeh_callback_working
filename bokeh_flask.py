@@ -42,12 +42,13 @@ bokeh_app = Application(FunctionHandler(modify_doc))
 io_loop = IOLoop.current()
 
 server = Server({'/bkapp': bokeh_app}, io_loop=io_loop,
-                allow_websocket_origin=[server_url])
+                allow_websocket_origin=['yangc-dataincubator-capstone.herokuapp.com'])
 server.start()
 
 @flask_app.route('/', methods=['GET'])
 def bkapp_page():
-    script = autoload_server(model=None, url='http://0.0.0.0:5006/bkapp') #localhost
+    script = autoload_server(model=None,
+                             url='https://yangc-dataincubator-capstone.herokuapp.com/bkapp') #localhost
     return render_template("embed.html", script=script)
 
 if __name__ == '__main__':
