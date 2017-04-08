@@ -3,7 +3,7 @@ import os
 
 from random import random
 
-from bokeh.layouts import row
+from bokeh.layouts import row, column
 from bokeh.models import CustomJS, ColumnDataSource
 from bokeh.plotting import figure
 from bokeh.embed import components
@@ -17,11 +17,11 @@ x = [random() for x in range(500)]
 y = [random() for y in range(500)]
 
 s1 = ColumnDataSource(data=dict(x=x, y=y))
-p1 = figure(plot_width=400, plot_height=400, tools="lasso_select", title="Select Here")
+p1 = figure(plot_width=300, plot_height=300, tools="lasso_select", title="Select Here")
 p1.circle('x', 'y', source=s1, alpha=0.6)
 
 s2 = ColumnDataSource(data=dict(x=[], y=[]))
-p2 = figure(plot_width=400, plot_height=400, x_range=(0, 1), y_range=(0, 1),
+p2 = figure(plot_width=300, plot_height=300, x_range=(0, 1), y_range=(0, 1),
             tools="", title="Watch Here")
 p2.circle('x', 'y', source=s2, alpha=0.6)
 
@@ -38,7 +38,7 @@ s1.callback = CustomJS(args=dict(s2=s2), code="""
         s2.trigger('change');
     """)
 
-layout = row(p1, p2)
+layout = column(p1, p2)
 
 scr, di = components(layout)
 
@@ -65,5 +65,5 @@ def plot_query():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host = '0.0.0.0', port = port)
-    # app.run()
+    #app.run(host = '0.0.0.0', port = port)
+    app.run()
