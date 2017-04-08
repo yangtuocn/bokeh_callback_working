@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import os
 
 from random import random
@@ -46,19 +46,22 @@ scr, di = components(layout)
 def index():
     return render_template('index.html',
                            plot_script = scr,
-                           plot_div = di)
+                           plot_div = di,
+                           tweet_blockquote = '')
 
 @app.route('/add', methods=['POST'])
 def add_query():
     return render_template('index.html',
                            plot_script = scr,
-                           plot_div = di)
+                           plot_div = di,
+                           tweet_blockquote = '')
 
 @app.route('/plot', methods=['POST'])
 def plot_query():
     return render_template('index.html',
                            plot_script = scr,
-                           plot_div = di)
+                           plot_div = di,
+                           tweet_blockquote = '')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
