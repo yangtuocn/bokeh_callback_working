@@ -6,12 +6,12 @@
         href="{{ url_for('static', filename='style.css') }}">
 
   <link rel="stylesheet" type="text/css" 
-        href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.css">
+        href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css">
   <link rel="stylesheet" type="text/css"
-        href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.css">
+        href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.css">
 
-  <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
-  <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.js"></script>
+  <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
+  <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.js"></script>
 
   {{ plot_script | safe }}
 
@@ -28,6 +28,12 @@
         <dt>try everything:</dt>
         <dd><input type="text" size="30" name="tweet_query"></dd>
         <dd><input type="submit" value="Search"></dd>
+      </dl>
+    </form>
+
+    <form action="{{ url_for('plot_query') }}" method="post" class="plot-entry">
+      <dl>
+        <dd><input type="submit" value="Plot"></dd>
       </dl>
     </form>
 

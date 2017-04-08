@@ -121,15 +121,21 @@ def get_tweet_blockquote(tweet_index):
 ################################################################
 
 
-def flash_selected(attr, old, new):
-    flash('got a point')
+#def flash_selected(attr, old, new):
+#    flash('got a point')
 
 
 @app.route('/')
 def index():
-    script = autoload_server(model=None, url='http://localhost:5000/bkapp')
-    return render_template('index.html', script=script)
+    #script = autoload_server(model=None, url='http://localhost:5000/bkapp')
+    return render_template('index.html')#, script=script)
 
+@app.route('/plot', methods=['POST'])
+def plot_query():
+    return render_template('index.html',
+                           plot_script=scr,
+                           plot_div=di,
+                           tweet_blockquote = '')
 
 @app.route('/add', methods=['POST'])
 def add_query():
@@ -213,15 +219,15 @@ def add_query():
 if __name__ == "__main__":
     # port = int(os.environ.get("PORT", 5000))
     # app.run(host = '0.0.0.0', port = port)
-    # app.run()
-    from tornado.httpserver import HTTPServer
-    from tornado.wsgi import WSGIContainer
-    from bokeh.util.browser import view
+    app.run()
+    #from tornado.httpserver import HTTPServer
+    #from tornado.wsgi import WSGIContainer
+    #from bokeh.util.browser import view
 
-    print('Opening Flask app with embedded Bokeh application on http://localhost:5000/')
+    #print('Opening Flask app with embedded Bokeh application on http://localhost:5000/')
 
-    http_server = HTTPServer(WSGIContainer(flask_app))
-    http_server.listen(5000)
+    #http_server = HTTPServer(WSGIContainer(flask_app))
+    #http_server.listen(5000)
 
-    io_loop.add_callback(view, "http://localhost:5000/")
-    io_loop.start()
+    #io_loop.add_callback(view, "http://localhost:5000/")
+    #io_loop.start()
