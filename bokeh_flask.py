@@ -42,8 +42,8 @@ bokeh_app = Application(FunctionHandler(modify_doc))
 io_loop = IOLoop.current()
 
 server = Server({'/bkapp': bokeh_app}, io_loop=io_loop,
-                port=$PORT, host=yangc-dataincubator-capstone.herokuapp.com,
-                address=0.0.0.0, use-xheaders,
+                #port=port, host=yangc-dataincubator-capstone.herokuapp.com,
+                #address='0.0.0.0', use-xheaders,
                 allow_websocket_origin=['yangc-dataincubator-capstone.herokuapp.com'])
 server.start()
 
