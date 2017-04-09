@@ -51,6 +51,8 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add_query():
+    tweet_query_keyword = request.form['tweet_query']
+    
     return render_template('index.html',
                            plot_script = scr,
                            plot_div = di,
@@ -65,5 +67,5 @@ def plot_query():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host = '0.0.0.0', port = port)
-    #app.run()
+    #app.run(host = '0.0.0.0', port = port)
+    app.run()
